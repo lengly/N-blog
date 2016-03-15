@@ -266,7 +266,7 @@ module.exports = function (app) {
 function* checkLogin () {
   if (!this.session.user) {
     this.flash = '未登录!'; 
-    this.redirect('/login');
+    return this.redirect('/login');
   }
   yield arguments[arguments.length - 1];
 }
@@ -274,7 +274,7 @@ function* checkLogin () {
 function* checkNotLogin () {
   if (this.session.user) {
     this.flash = '已登录!'; 
-    this.redirect('back');
+    return this.redirect('back');
   }
   yield arguments[arguments.length - 1];
 }
